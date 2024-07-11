@@ -5,6 +5,15 @@ Docker environment for letstalks ai voice tools
 Panel<br />
 https://github.com/ground-creative/letstalk-panel
 
+OpenVoice API Docker<br />
+https://github.com/ground-creative/openvoice-docker
+
+Fast Whisper Docker<br />
+https://github.com/ground-creative/docker-fast-whisper
+
+Ollama & open-webui<br />
+https://github.com/open-webui/open-webui
+
 ## Installation
 
 1. Clone the repository
