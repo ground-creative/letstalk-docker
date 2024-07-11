@@ -1,4 +1,4 @@
-# DOCKER IMAGE FOR LETSTALK AI VOICE TOOLS
+# DOCKER IMAGE FOR LET'S TALK AI VOICE TOOLS
 
 Docker environment for letstalks ai voice tools
 
@@ -7,7 +7,7 @@ Docker environment for letstalks ai voice tools
 1. Clone the repository
 
 ```
-git clone https://github.com/ground-creative/docker-scripts-runner
+git clone https://github.com/ground-creative/letstalk-docker.git
 ```
 
 2. Change environment variables in env.sample file and rename it to .env
