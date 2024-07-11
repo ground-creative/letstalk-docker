@@ -1,0 +1,9 @@
+app
+!app/.gitkeep
+logs
+!logs/.gitkeep
+.env
+dockerfiles/*
+!dockerfiles/sys.*
+scripts/*
+!scripts/sys.*

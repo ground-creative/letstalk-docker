@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ARG DOCKER_IMAGE
+
+FROM ${DOCKER_IMAGE}
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get install -yq apt-utils nano git && \
+    apt-get install -yq tzdata && \
+    apt-get install -yq python3 python3-pip && \
+    apt install -yq libmagic1 && \
+    apt install -yq nodejs npm && \
+    apt install -yq ffmpeg && \
+    npm install -g serve && \
+    apt-get clean
+
+COPY scripts/sys.run.sh .
+
+RUN chmod +x sys.run.sh
+
+ENTRYPOINT [ "/bin/sh", "/sys.run.sh" ]
