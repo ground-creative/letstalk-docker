@@ -2,6 +2,9 @@
 
 Docker environment for letstalks ai voice tools
 
+Panel<br />
+https://github.com/ground-creative/letstalk-panel
+
 ## Installation
 
 1. Clone the repository
