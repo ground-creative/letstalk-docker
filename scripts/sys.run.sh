@@ -19,7 +19,6 @@ if [ -n "${APP_REPOSITORY_URL}" ] && \
 fi
 
 cd ${VOLUME_PATH}/deploy/backend
-#pip install --no-cache-dir -r requirements.txt --break-system-packages
 pip install --no-cache-dir -r requirements.txt
 
 # Run command based on environment
@@ -28,7 +27,7 @@ if [ "${TEST}" = true ]; then
     tail -f /dev/null
 else
     # Substitute environment variables in command
-    COMMAND=$(echo "${COMMAND}" | sed "s/__SERVER_ADDRESS__/${SERVER_ADDRESS}/g; s/__SERVER_PORT__/${SERVER_PORT}/g")
+    #COMMAND=$(echo "${COMMAND}" | sed "s/__SERVER_ADDRESS__/${SERVER_ADDRESS}/g; s/__SERVER_PORT__/${SERVER_PORT}/g")
     echo "======= Running command \"${COMMAND}\""
     eval "${COMMAND}"
 fi

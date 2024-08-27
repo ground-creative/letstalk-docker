@@ -26,28 +26,21 @@ git clone https://github.com/ground-creative/letstalk-docker.git
 
 ## Usage
 
-Add the correct permissions when installing deploy folder
+Use letstalk sh script to build and manage the containers
 
 ```
-USRID=$(id -u) GRPID=$(id -g) docker compose --project-name=letstalk up -d --build
-```
+cd scripts
 
-or
+# Build main container
+./letstalk build
 
-```
-docker compose --project-name=letstalk up -d
-```
+# Use -i to include extra compose files
+./letstalk build -i="mysql"
+./letstalk build -i="mysql,react-dev"
 
-Or
+# Full commands list and options list
+./letstalk -h
 
-```
-docker compose --project-name=letstalk up -d --build
-```
-
-Create mysql container
-
-```
-docker compose --project-name=letstalk -f docker-compose.yaml -f docker-compose.mysql.yaml up -d --build
 ```
 
 Create network

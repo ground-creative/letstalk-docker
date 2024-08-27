@@ -10,7 +10,7 @@ services:
       - type: bind
         source: ./logs
         target: /logs
-    build: 
+    build:
       context: .
       dockerfile: ${DOCKER_FILE}
       args:
@@ -21,40 +21,40 @@ services:
         USRID: ${USRID}
         GRPID: ${GRPID}
     environment:
-    - "TEST=${TEST}"
-    - "CONTAINER_NAME=${CONTAINER_NAME}"
-    - "COMMAND=${COMMAND}"
-    - "VOLUME=${VOLUME}"
-    - "DOCKER_IMAGE=${DOCKER_IMAGE}"
-    - "WORK_DIR=${WORK_DIR}"
-    - "TZ=${TIMEZONE}"
-    - "SERVER_ADDRESS=${SERVER_ADDRESS}"
-    - "SERVER_PORT=${SERVER_PORT}"
-    - "LOG_LEVEL=${LOG_LEVEL}"
-    - "DEBUG_APP=${DEBUG_APP}"
-    - "WEB_PANEL_ADDRESS=${WEB_PANEL_ADDRESS}"
-    - "WEB_PANEL_PREFIX=${WEB_PANEL_PREFIX}"
-    - "APP_REPOSITORY_URL=${APP_REPOSITORY_URL}"
-    - "APP_SECRET_KEY=${APP_SECRET_KEY}"
-    - "UPLOAD_FOLDER=${UPLOAD_FOLDER}"
-    - "EXTERNAL_ADDRESS=${EXTERNAL_ADDRESS}"
-    - "USRID=${USRID}"
-    - "GRPID=${GRPID}"
-    - "MYSQL_HOST=${MYSQL_HOST}"
-    - "MYSQL_USER=${MYSQL_USER}"
-    - "MYSQL_PASS=${MYSQL_PASS}"
-    - "MYSQL_DB=${MYSQL_DB}"
-    - "MYSQL_PORT=${MYSQL_PORT}"
-    - "AUTH0_DOMAIN=${AUTH0_DOMAIN}"
-    - "API_AUDIENCE=${API_AUDIENCE}"
-    - "ALGORITHMS=${ALGORITHMS}"
+      - "TEST=${TEST}"
+      - "CONTAINER_NAME=${CONTAINER_NAME}"
+      - "COMMAND=${COMMAND}"
+      - "VOLUME=${VOLUME}"
+      - "DOCKER_IMAGE=${DOCKER_IMAGE}"
+      - "WORK_DIR=${WORK_DIR}"
+      - "TZ=${TIMEZONE}"
+      - "SERVER_ADDRESS=${SERVER_ADDRESS}"
+      - "SERVER_PORT=${SERVER_PORT}"
+      - "LOG_LEVEL=${LOG_LEVEL}"
+      - "DEBUG_APP=${DEBUG_APP}"
+      - "WEB_PANEL_ADDRESS=${WEB_PANEL_ADDRESS}"
+      - "WEB_PANEL_PREFIX=${WEB_PANEL_PREFIX}"
+      - "WEB_PANEL_PORT=${WEB_PANEL_PORT}"
+      - "BACKEND_PREFIX=${BACKEND_PREFIX}"
+      - "APP_REPOSITORY_URL=${APP_REPOSITORY_URL}"
+      - "APP_SECRET_KEY=${APP_SECRET_KEY}"
+      - "UPLOAD_FOLDER=${UPLOAD_FOLDER}"
+      - "USRID=${USRID}"
+      - "GRPID=${GRPID}"
+      - "MYSQL_HOST=${MYSQL_HOST}"
+      - "MYSQL_USER=${MYSQL_USER}"
+      - "MYSQL_PASS=${MYSQL_PASS}"
+      - "MYSQL_DB=${MYSQL_DB}"
+      - "MYSQL_PORT=${MYSQL_PORT}"
+      - "AUTH0_DOMAIN=${AUTH0_DOMAIN}"
+      - "API_AUDIENCE=${API_AUDIENCE}"
+      - "ALGORITHMS=${ALGORITHMS}"
     logging:
       driver: "${LOG_DRIVER}"
       options:
         tag: "{{.Name}}"
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
-    #  - "${WEB_PANEL_PORT:-}"
+      - "${SERVER_PORT:-5000}:${SERVER_PORT:-5000}"
     networks:
       - default
 
@@ -62,4 +62,3 @@ networks:
   default:
     external:
       name: ${NETWORK_NAME}
-    
