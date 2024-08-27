@@ -11,8 +11,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt install -yq libmagic1 && \
     apt install -yq nodejs npm && \
     apt install -yq ffmpeg && \
+    apt install -yq default-mysql-client && \
     npm install -g serve && \
     apt-get clean
+
+RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED
 
 COPY scripts/sys.run.sh .
 

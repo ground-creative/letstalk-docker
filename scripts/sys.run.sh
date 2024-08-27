@@ -19,7 +19,8 @@ if [ -n "${APP_REPOSITORY_URL}" ] && \
 fi
 
 cd ${VOLUME_PATH}/deploy/backend
-pip install --no-cache-dir -r requirements.txt --break-system-packages
+#pip install --no-cache-dir -r requirements.txt --break-system-packages
+pip install --no-cache-dir -r requirements.txt
 
 # Run command based on environment
 if [ "${TEST}" = true ]; then 

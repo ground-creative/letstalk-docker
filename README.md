@@ -44,6 +44,18 @@ Or
 docker compose --project-name=letstalk up -d --build
 ```
 
+Create mysql container
+
+```
+docker compose --project-name=letstalk -f docker-compose.yaml -f docker-compose.mysql.yaml up -d --build
+```
+
+Create network
+
+```
+docker network create {NETWORK_NAME}
+```
+
 ### Command Environment Variables
 
 It's possible to override environmet variable file while starting or building a container
