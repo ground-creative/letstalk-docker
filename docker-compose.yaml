@@ -10,6 +10,11 @@ services:
       - type: bind
         source: ./logs
         target: /logs
+      - ./mongod.conf:/etc/mongod.conf
+      - ./mongo:/mongo
+      - ./knowledge_base:/knowledge_base
+      - ./vector_store:/vector_store
+    #command: mongod --config /etc/mongod.conf
     build:
       context: .
       dockerfile: ${DOCKER_FILE}
@@ -49,6 +54,8 @@ services:
       - "AUTH0_DOMAIN=${AUTH0_DOMAIN}"
       - "API_AUDIENCE=${API_AUDIENCE}"
       - "ALGORITHMS=${ALGORITHMS}"
+      - "VECTOR_STORE_PATH=${VECTOR_STORE_PATH}"
+      - "KNOWLEDGE_BASE_PATH=${KNOWLEDGE_BASE_PATH}"
     logging:
       driver: "${LOG_DRIVER}"
       options:

@@ -4,21 +4,35 @@ ARG DOCKER_IMAGE
 
 FROM ${DOCKER_IMAGE}
 
+
+
+# Install necessary packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    apt-get install -yq apt-utils nano git && \
-    apt-get install -yq tzdata && \
-    apt-get install -yq python3 python3-pip && \
-    apt install -yq libmagic1 && \
-    apt install -yq nodejs npm && \
-    apt install -yq ffmpeg && \
-    apt install -yq default-mysql-client && \
+    apt-get install -yq apt-utils nano git tzdata python3 python3-pip \
+    libmagic1 nodejs npm ffmpeg default-mysql-client gnupg curl wget && \
     npm install -g serve && \
     apt-get clean
 
+# Fix for Python EXTERNALLY-MANAGED
 RUN rm -f /usr/lib/python3.11/EXTERNALLY-MANAGED
 
+# Remove any existing MongoDB GPG key file to avoid conflicts
+RUN rm -f /usr/share/keyrings/mongodb-server-7.0.gpg
+
+# Import the MongoDB public GPG key
+RUN curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+    gpg --batch --dearmor -o /usr/share/keyrings/mongodb-server-7.0.gpg
+
+# Add the MongoDB repository
+RUN echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/7.0 main" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+# Update the package list and install MongoDB
+RUN apt-get update && apt-get install -yq mongodb-org
+
+# Copy and set permissions for the script
 COPY scripts/sys.run.sh .
 
 RUN chmod +x sys.run.sh
 
+# Set the entrypoint
 ENTRYPOINT [ "/bin/sh", "/sys.run.sh" ]
